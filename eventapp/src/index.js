@@ -4,10 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const rootElement = document.getElementById('root');
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App />
-);
+
+let render = () => {
+  root.render(<App />, rootElement);
+};
+
+if (module.hot) {
+  module.hot.accept('./App', function() {
+    setTimeout(render);
+  })
+}
+
+render();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
